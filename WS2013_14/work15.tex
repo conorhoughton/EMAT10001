@@ -1,0 +1,174 @@
+\documentclass[12pt]{article}
+
+\usepackage{a4wide, amsfonts, epsfig}
+
+\begin{document}
+\begin{center}
+{\bf EMAT10001 Workshop Sheet 15.}\\[1cm]{} Conor Houghton 2014-02-12
+\end{center}
+\subsubsection*{Introduction} 
+Since there was no lecture this week this worksheet partly revizes
+worksheets 13 and 14, it also includes some integration. There is the
+usual bounty for errors and typos, 20p to \pounds 2 depending on how
+serious it is. There is no exercize sheet for this week.
+
+\subsubsection*{Useful facts}
+\begin{itemize}
+\item Differentiating the trigonometric functions:
+\begin{eqnarray}
+\frac{d}{dx}\cos{x}&=&-\sin{x}\cr
+\frac{d}{dx}\sin{x}&=&\cos{x}
+\end{eqnarray}
+\item The Taylor expansion around $t=0$
+\begin{equation}
+f(t)=\sum_{n=0}^\infty\frac{1}{n!}\left.\frac{d^nf}{dt^n}\right|_{t=0}t^n
+\end{equation}
+\end{itemize}
+\subsubsection*{Integration}
+Integration is the inverse of differentiation:
+\begin{equation}
+\int_a^b \frac{df}{dt}dt=f(b)-f(a)
+\end{equation}
+and
+\begin{equation}
+\frac{d}{dt}\int_a^tfdt=f(t)
+\end{equation}
+The fundamental theorem of calculus tells us that the integral is also
+the area under the curve, thus
+\begin{equation}
+A=\int_a^b f(t)dt
+\end{equation}
+is the area enclosed by $f(t)$ and the $t$ axis as $t$ goes from $t=a$
+to $t=b$. 
+
+You can work out some standard integrals from knowing that integration
+is backwards diffentiation; these are often written without the limits,
+so
+\begin{equation}
+\int t^ndt=\frac{t^{n+1}}{n+1}+C
+\end{equation}
+means
+\begin{equation}
+\frac{d}{dt}\left(\frac{t^{n+1}}{n+1}+C\right)=t^n
+\end{equation}
+no matter what constant value is given to $C$. This means
+\begin{equation}
+\int_a^b t^ndt=\frac{b^{n+1}}{n+1}-\frac{a^{n+1}}{n+1}
+\end{equation}
+and this is often written 
+\begin{equation}
+\int_a^b t^ndt=\left.\frac{t^{n+1}}{n+1}\right|_a^b
+\end{equation}
+So
+\begin{eqnarray}
+\int t^ndt&=&\frac{t^{n+1}}{n+1}+C\cr
+\int e^tdt&=&e^t+C\cr
+\int \sin{t}dt&=&-\cos{t}+C\cr
+\int \cos{t}dt&=&-\sin{t}+C\cr
+\int \frac{1}{t}dt&=&\ln{t}+C
+\end{eqnarray}
+
+Other integrals can often be done by a change of variables, for example, if 
+\begin{equation}
+I=\int e^{2t}dt
+\end{equation}
+let $s=2t$ and $ds/dt=2$ means $ds=2dt$, this manner of treating the
+differential like a fraction and multiplying across by the $dt$
+shouldn't make you think you can always get away with this sort of
+thing, but there is a theorem that says you can here, so
+\begin{equation}
+I=\frac{1}{2}\int e^sds=\frac{1}{2}e^s+C=\frac{1}{2}e^{2t}+C
+\end{equation}
+Another, harder version would be
+\begin{equation}
+I=\int te^{t^2}dt
+\end{equation}
+Use $s=t^2$ so $ds/dt=2t$ or $ds=2tdt$ and
+\begin{equation}
+I=\int te^{t^2}dt=\frac{1}{2}\int e^{s}dt=\frac{1}{2}e^{t^2}+C
+\end{equation}
+
+If there are limits you need to change them too, so
+\begin{equation}
+I=\int_0^2 \exp{t/2}dt
+\end{equation}
+If you let $s=t/2$ then $2ds=dt$ and when $t=0$ then $s=0$ and when $t=2$ then $s=1$ so the integral becomes
+\begin{equation}
+I=2\int_0^1 \exp{s}ds=2e-2
+\end{equation}
+
+\subsubsection*{Work sheet}
+
+\begin{enumerate}
+
+\item The general second order Runge Kutta method for $\dot{y}=f(y)$ is
+\begin{eqnarray}
+k_1&=&f(y_n)\cr
+k_2&=&f(y_n+\alpha \delta t k_1)
+\end{eqnarray}
+and
+\begin{equation}
+y_{n+1}=y_n+\left[\left(1-\frac{1}{2\alpha}\right)k_1+\frac{1}{2\alpha}k_2\right]\delta t
+\end{equation}
+Show that this gives the Taylor series up to second order. Note that
+$\alpha=1/2$ gives the midpoint method. This was the last question on
+last week's worksheet, so lots of people didn't get a chance to think
+about it and it worth doing since it does give a good idea of how
+Runge Kutta works.
+
+\item Here is a second order differential equation
+\begin{equation}
+\frac{d^2f}{dt^2}+\frac{df}{dt}-6f=0
+\end{equation}
+This can also be solved using an ansatz of the form $A\exp{(\lambda
+  t)}$; the difference is that there will be two different $\lambda$s, lets say $\lambda_1$ and $\lambda_2$. Since the equation is linear you can add them to give a solution with two arbitrary constants:
+\begin{equation}
+f(t)=A_1e^{\lambda_1t}+A_2e^{\lambda_2 t}
+\end{equation}
+This is what you expect for a second order differential equation, you
+need two initial conditions, here use $f(0)=0$ and $\dot{f}(0)=-1$.
+
+\item Here is another second order differential equation
+\begin{equation}
+\frac{d^2f}{dt^2}-f=0
+\end{equation}
+Solve this with $f(0)=0$ and $\dot{f}(0)=1$.
+
+\item This differential equation
+\begin{equation}
+\frac{d^2f}{dt^2}+f=0
+\end{equation}
+with $f(0)=0$ and $\dot{f}(0)=1$ doesn't work so well, you end up with
+complex $\lambda$s, however, if you keep your nerve and use the Euler formula
+\begin{equation}
+e^{i\theta}=\cos{\theta}+i\sin{\theta}
+\end{equation}
+it will work out; just bundle $A_1+A_2$ into one arbitrary constant
+$C_1=A_1+A_2$ and $i(A_1-A_2)$ into another $C_2=i(A_1-A_2)$; $C_1$
+and $C_2$ should turn out to be real, the detour through complex
+numbers is just that, a detour.
+
+\item Some integration examples; integrate
+\begin{enumerate}
+\item $\int (2x+2)e^{x^2+2x+3}dx$
+\item $\int (x^2+1)/(x^3+3x)dx$
+\item $\int \sqrt{x}dx$
+\item $\int \sqrt{7x+1}dx$
+\end{enumerate}
+
+\item Integrating the square pulse. Say $f$ is square pulse
+\begin{equation}
+f(t)=\left\{\begin{array}{ll}1&-\pi/2<t<\pi/2\\0&\mbox{otherwise}\end{array}\right.
+\end{equation}
+Thus $f(t)$ is one between $-\pi/2$ and $\pi/2$ but zero everywhere else. What is
+\begin{equation}
+I=\int_{-\pi}^\pi f(t)\cos{t}dt
+\end{equation}
+what about
+\begin{equation}
+I=\int_{-\pi}^\pi f(t)\cos{nt}dt
+\end{equation}
+for $n$ an integer.
+\end{enumerate}
+
+\end{document}

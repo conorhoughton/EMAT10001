@@ -1,0 +1,158 @@
+\documentclass[12pt]{article}
+
+\usepackage{a4wide, amsfonts, epsfig,bbold}
+
+\def\answers{1}
+
+\parindent 0pt
+\parskip 2ex
+
+\newcommand{\answer}[1]{\ifnum\answers=1{{\bf Answer:} \it{#1}}\fi}
+
+\begin{document}
+\begin{center}
+{\bf EMAT10001 Viva 1 solution sheet }\\[2ex]
+
+\end{center}
+
+\vspace{2ex}
+\begin{enumerate}
+
+
+
+\item
+\begin{enumerate}
+\item $n!=n(n-1)(n-2)\ldots 2\cdot 1$ so $5!=5\cdot 4\cdot 3\cdot
+  2\cdot 1=120$. What are the prime factors of $12!$.
+\item Show $2|(n^2-n)$.
+\item Show the numbers $6k+5$ and $7k+6$ are co-prime for every $k\ge 1$.
+\end{enumerate}
+
+\textbf{Answer}:
+a: So
+\begin{eqnarray}
+12!&=&12\cdot 11\cdot 10\cdot 9\cdot 8\cdot 7\cdot 6\cdot 5\cdot 4\cdot 3\cdot 2\cr
+   &=&3\cdot 2^2\cdot 11\cdot 2\cdot 5\cdot 3^2\cdot 2^3\cdot 7\cdot 2\cdot 3\cdot 5\cdot 2^2\cdot 3\cdot 2\cr
+   &=&3^5\cdot 2^8\cdot 5^2\cdot 7\cdot 11
+\end{eqnarray}
+b: Well $n^2-n=n(n-1)$ and one of those has to be even.
+c: Say $a|6k+5$ so $6k+5=ra$ for some $r$ and hence
+\begin{equation}
+7k+6=k+1+ra
+\end{equation}
+So $a|7k+6$ only if $a|k+1$, now $a|6k+5$ and $a|k+1$ means $a|k$
+which in turn means $a|1$. There might be a more elegant way of doing
+this, but this way is one way. 
+
+\item Let $p$ be an odd prime. Find the values of $x$ so that it is
+  its own inverse modulo $p$.
+
+\textbf{Answer}:
+If $x$ is its own inverse $x^2\equiv 1$ or $x^2-1\equiv
+  0$. Hence $p|x^2-1$ or $p|(x+1)(x-1)$, since $p$ is prime that means
+  $p|(x+1)$ or $p|(x-1)$ giving $x=1$ or $x=p-1$.
+
+
+\item Use Euler's theorem to compute
+\begin{enumerate}
+\item $3^{340}\pmod{341}$
+\item $7^{8^9}\pmod{100}$
+\item $2^{10000}\pmod{121}$
+\end{enumerate}
+
+\textbf{Answer}: 
+Now
+\begin{equation}
+341=11\cdot 31
+\end{equation}
+so $\phi(341)=300$ and hence
+\begin{equation}
+3^{340}\equiv 3^{40}
+\end{equation}
+which is still a little too big for a calculator and so we need to
+beat it down a bit further. $3^6=729\equiv 47$ so
+\begin{equation}
+3^{40}=(3^6)^63^4\equiv 47^63^4
+\end{equation}
+Now $47^2=\equiv 163$ so we get
+\begin{equation}
+29^63^4\equiv 163^33^4 = 3(3*163)^3=3(148)^3=56
+\end{equation}
+Next, $\phi(100)=40$ so we actually need to find $8^9\pmod{40}$ first, since $8^3\equiv 32\pmod{40}$ this gives 
+\begin{equation}
+32^3=2^{15}= 2^62^9\equiv 2^{11}=2^22^9\equiv 2^22^5\equiv 8
+\end{equation}
+all mod 40, so now we want $7^8\pmod{100}$ and this is one. Finally $\phi(121)=110$ so we want $10000$ mod 110 which is 100. Now $2^7\equiv 7$ mod 121. hence
+\begin{equation}
+2^{100}=(2^7)^{14}4\equiv 7^{14}2^2\equiv 101^414^2\equiv 67.
+\end{equation}
+
+\item A subgroup of a group is a subset of the group that is a group,
+  the main thing to check is that the subset is closed. Now, using the
+  notation in the lecture notes $\{e,a\}$ in the $Z_4$ group is not a
+  subgroup since $a^2=c$ so it isn't closed. Can you find a $Z_2$
+  subgroup of $Z_4$? What about $V_4$? It has three $Z_2$ subgroups.
+
+\textbf{Answer}:
+Unlike $a$, the element $c^2=e$ so $\{e,c\}$ is a $Z_2$ subgroup. In $V_4$ all the elements square to the identity, so $\{e,a\}$, $\{e,b\}$ and $\{e,c\}$ are all $Z_2$ subgroups.
+
+
+\item
+We have four boxes. Box 1 contains 2000 components of which 5\% are defective. Box 2 contains 500 components of which 40\% are defective. Boxes 3 and 4 each contain 1000 components and 10\% of each are defective. We select at random one of the boxes and remove at random one component. 
+\begin{enumerate}
+\item What is the probaility that selected component is defective?
+\item If we find that the component is defective, what is the probability that it came from box 2?
+\end{enumerate}
+
+\answer{
+(a) $P(defective)=0.25*(0.05+0.4+0.1+0.1)=0.1625$
+
+(b) $P(B2|def)=\frac{P(def|B2)P(B2)}{P(def)}=\frac{0.4\times 0.25}{0.1625}=0.615 (62\%)$
+}
+
+\item
+Over a period of one week, 2000 emails were collected. Of these, 1500 were spam and 500 were not spam. The presence or not of three words $w_1$, $w_2$ and $w_3$ were then noted in each email. The results are shown below.
+\vspace{2ex}
+
+\begin{tabular}{|c|c|c|}\hline
+$word$ & \# spam emails containing $word$ & \# non-spam emails containing $word$\\\hline
+$w_1$ & 1000 & 100\\\hline
+$w_2$ & 200 & 300\\\hline
+$w_3$ & 500 & 200\\\hline
+\end{tabular}
+\vspace{2ex}
+
+\begin{enumerate}
+\item If a new email contains all three words, is it more likely to be spam or non-spam?
+\item What if it contains words $w_1$ and $w_3$ but not $w_2$?
+\end{enumerate}
+ 
+\answer{
+(a)
+
+$P(spam)=3/4 \;\;\;\;\; P(\neg spam)=1/4$
+
+\begin{tabular}{|c|c|c|c|c|}\hline
+$P(w_1|spam)$ & 2/3   && $P(w_1|\neg spam)$ & 1/5\\\hline
+$P(w_2|spam)$ & 2/15 && $P(w_2|\neg spam)$ & 3/5\\\hline
+$P(\neg w_2|spam)$ & 13/15 && $P(\neg w_2|\neg spam)$ & 2/5\\\hline
+$P(w_3|spam)$ & 1/3   && $P(w_3|\neg spam)$ & 2/5\\\hline
+\end{tabular}
+
+$\frac{P(spam|w_1,w_2,w_3)}{P(\neg spam|w_1,w_2,w_3)}=
+\frac{(2/3)(2/15)(1/3)(3/4)}{(1/5)(3/5)(2/5)(1/4)}=1.85$
+
+Therefore almost twice as likely to be spam
+
+(b)
+
+$\frac{P(spam|w_1,\neg w_2,w_3)}{P(\neg spam|w_1,\neg w_2,w_3)}=
+\frac{(2/3)(13/15)(1/3)(3/4)}{(1/5)(2/5)(2/5)(1/4)}=18.06$
+
+
+Therefore 18 times more likely to be spam.
+
+}
+
+\end{enumerate}
+\end{document}

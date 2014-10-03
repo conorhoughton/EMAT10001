@@ -1,0 +1,87 @@
+\documentclass[12pt]{article}
+
+\usepackage{a4wide, amsfonts, epsfig}
+
+
+\begin{document}
+
+\begin{enumerate}
+
+\item
+\begin{enumerate}
+\item $n!=n(n-1)(n-2)\ldots 2\cdot 1$ so $5!=5\cdot 4\cdot 3\cdot
+  2\cdot 1=120$. What are the prime factors of $12!$.
+\item Show $2|(n^2-n)$.
+\item Show the numbers $6k+5$ and $7k+6$ are co-prime for every $k\ge 1$.
+\end{enumerate}
+
+\textbf{Answer}:
+a: So
+\begin{eqnarray}
+12!&=&12\cdot 11\cdot 10\cdot 9\cdot 8\cdot 7\cdot 6\cdot 5\cdot 4\cdot 3\cdot 2\cr
+   &=&3\cdot 2^2\cdot 11\cdot 2\cdot 5\cdot 3^2\cdot 2^3\cdot 7\cdot 2\cdot 3\cdot 5\cdot 2^2\cdot 3\cdot 2\cr
+   &=&3^5\cdot 2^8\cdot 5^2\cdot 7\cdot 11
+\end{eqnarray}
+b: Well $n^2-n=n(n-1)$ and one of those has to be even.
+c: Say $a|6k+5$ so $6k+5=ra$ for some $r$ and hence
+\begin{equation}
+7k+6=k+1+ra
+\end{equation}
+So $a|7k+6$ only if $a|k+1$, now $a|6k+5$ and $a|k+1$ means $a|k$
+which in turn means $a|1$. There might be a more elegant way of doing
+this, but this way is one way. 
+
+\item Let $p$ be an odd prime. Find the values of $x$ so that it is
+  its own inverse modulo $p$.
+
+\textbf{Answer}:
+If $x$ is its own inverse $x^2\equiv 1$ or $x^2-1\equiv
+  0$. Hence $p|x^2-1$ or $p|(x+1)(x-1)$, since $p$ is prime that means
+  $p|(x+1)$ or $p|(x-1)$ giving $x=1$ or $x=p-1$.
+
+
+\item Use Euler's theorem to compute
+\begin{enumerate}
+\item $3^{340}\pmod{341}$
+\item $7^{8^9}\pmod{100}$
+\item $2^{10000}\pmod{121}$
+\end{enumerate}
+
+\textbf{Answer}: 
+Now
+\begin{equation}
+341=11\cdot 31
+\end{equation}
+so $\phi(341)=300$ and hence
+\begin{equation}
+3^{340}\equiv 3^{40}
+\end{equation}
+which is still a little too big for a calculator and so we need to
+beat it down a bit further. $3^6=729\equiv 47$ so
+\begin{equation}
+3^{40}=(3^6)^63^4\equiv 47^63^4
+\end{equation}
+Now $47^2=\equiv 163$ so we get
+\begin{equation}
+29^63^4\equiv 163^33^4 = 3(3*163)^3=3(148)^3=56
+\end{equation}
+Next, $\phi(100)=40$ so we actually need to find $8^9\pmod{40}$ first, since $8^3\equiv 32\pmod{40}$ this gives 
+\begin{equation}
+32^3=2^{15}= 2^62^9\equiv 2^{11}=2^22^9\equiv 2^22^5\equiv 8
+\end{equation}
+all mod 40, so now we want $7^8\pmod{100}$ and this is one. Finally $\phi(121)=110$ so we want $10000$ mod 110 which is 100. Now $2^7\equiv 7$ mod 121. hence
+\begin{equation}
+2^{100}=(2^7)^{14}4\equiv 7^{14}2^2\equiv 101^414^2\equiv 67.
+\end{equation}
+
+\item A subgroup of a group is a subset of the group that is a group,
+  the main thing to check is that the subset is closed. Now, using the
+  notation in the lecture notes $\{e,a\}$ in the $Z_4$ group is not a
+  subgroup since $a^2=c$ so it isn't closed. Can you find a $Z_2$
+  subgroup of $Z_4$? What about $V_4$? It has three $Z_2$ subgroups.
+
+\textbf{Answer}:
+Unlike $a$, the element $c^2=e$ so $\{e,c\}$ is a $Z_2$ subgroup. In $V_4$ all the elements square to the identity, so $\{e,a\}$, $\{e,b\}$ and $\{e,c\}$ are all $Z_2$ subgroups.
+
+\end{enumerate}
+\end{document}

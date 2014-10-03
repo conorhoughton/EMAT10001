@@ -1,0 +1,82 @@
+\documentclass[12pt]{article}
+
+\usepackage{a4wide, amsfonts, epsfig,bbold}
+
+\begin{document}
+\begin{center}
+{\bf EMAT10001 Workshop Sheet 6, outline solutions.}\\[1cm]{} Conor Houghton 2013-11-2
+\end{center}
+
+\subsubsection*{Work sheet}
+
+
+\begin{enumerate}
+\item Use Euler's theorem to calculate
+\begin{equation}
+3^{81}\pmod{100}
+\end{equation}
+\textbf{Solution: } So $100=2\cdot 2\cdot 5\cdot 5$ so 
+\begin{equation}
+\phi(100)=100\cdot\frac{1}{2}\frac{4}{5}=40
+\end{equation}
+Now $(3,100)=1$ so we can apply Euler's theorem and get
+\begin{equation}
+3^{40}\equiv 1 \pmod{100}
+\end{equation}
+and so
+\begin{equation}
+3^{81}\equiv 3 \pmod{100}
+\end{equation}
+\item An enemy organization has encrypted a message with the public
+  key $p=111$ and $e=5$; since $p$ is three digits long the message
+  blocks are all taken to be two digits, that is one character, long,
+  with the simple translation of the alphabet into numbers from zero
+  to 25 we have been using. The message is
+  001101000081025032000109000021000 where each three digits
+  corresponds to one letter. However, by choosing a public key $n$
+  with less the 2048 bits the enemy organization has made itself
+  vulnerable to a brute force decryption attack, that's your job.
+  \textbf{Solution: } So first of all let's factorize $n=111$, it is
+  $3\cdot 37$ so $\phi(111)=72$. Next we need to find the inverse of
+  $e=5$, well
+\begin{eqnarray}
+72&=&14\cdot 5+2\cr
+5&=&2\cdot 2+1
+\end{eqnarray}
+so $1=5-2\cdot 2=5-2\cdot(72-5\cdot 14)=29\cdot 5-2\cdot 72$ or $5^{-1}\equiv 29 \pmod{72}$. Now
+\begin{equation}
+1^{29}\equiv 1\pmod{111}
+\end{equation}
+so the first letter is \lq{}b\rq{},
+\begin{equation}
+101^{29}\equiv 11\pmod{111}
+\end{equation}
+so the second letter is \lq{}l\rq{}, the third letter is \lq{}a\rq{} and the fourth is 
+\begin{equation}
+101^{29}\equiv 12\pmod{111}
+\end{equation}
+or \lq{}m\rq{}. In fact, the message is \lq{}blamecanada\rq{}.
+
+\item This is about encoding rather than decoding, choose two primes
+  that multiply to give a three digit number, chose a exponent
+  \lq{}e\rq{} and a short message to encode and encode it. Ideally you should decode it again afterwards.
+\textbf{Solution: } Obviously this depends on the primes and so on. Lets do a quick example, say $n=11\cdot 17=187$. Now $\phi(143)=10\cdot 12=160$ so $e=7$ works as an exponent since $(7,160)=1$. Now, say the message is \lq{}waxon\rq{} which in numbers is $2200231413$. Now
+\begin{eqnarray}
+c(22)&\equiv& 22^{7}\equiv 44 \pmod{187}\cr
+c(00)&\equiv& 0^{7}\equiv 0 \pmod{187}\cr
+c(23)&\equiv& 23^{7}\equiv 133 \pmod{187}\cr
+c(14)&\equiv& 14^{7}\equiv 108 \pmod{187}\cr
+c(13)&\equiv& 23^{7}\equiv 106 \pmod{187}
+\end{eqnarray}
+so the cipher text is 044000133108106. To decode you would have to find $d\equiv 7^{-1}\pmod{160}$. In fact $160=7\cdot 22+6$ and $7=6+1$ so $1=7-6=7-(160-7\cdot 22)$ or
+\begin{equation}
+1=23\cdot 7-160
+\end{equation}
+or $7^{-1}\equiv 23\pmod{160}$ hence the decoding exponent is $23$. Applying it to the stuff above
+\begin{equation}
+44^{23}\equiv 22 \pmod{187}
+\end{equation}
+and so on.  
+\end{enumerate}
+
+\end{document}

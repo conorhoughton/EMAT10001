@@ -1,0 +1,177 @@
+\documentclass[12pt]{article}
+
+\usepackage{a4wide, amsfonts, epsfig,bbold}
+
+\begin{document}
+\begin{center}
+{\bf EMAT10001 Workshop Sheet 5.}\\[1cm]{} Conor Houghton 2013-10-17
+\end{center}
+\subsubsection*{Introduction} 
+There is the usual bounty for errors and typos, 20p to \pounds 2
+depending on how serious it is.
+
+Some of these questions are taken from \emph{Number Theory with
+  Computer Applications} by Ramanujachary Kumanduri and Cristina
+Romero.
+
+\subsubsection*{Useful facts}
+\begin{itemize}
+\item $a\equiv b \pmod m$ iff $m|(a-b)$.
+\item $(a,m)=1$ if and only if there exists an $a^{-1}$ such that $aa^{-1}\equiv 1 \pmod m$. This can be found using the Euclid algorithm.
+\item The Euclid algorithm is: set $x=a$ and $y=b$ where $a>b$, then, while $y!=0$
+  set $r=x\bmod y$ and then let $x=y$ and $y=r$. If $y=0$ the answer
+  is $x$.
+\end{itemize}
+\subsubsection*{Some common mathematical notation}
+\begin{itemize}
+\item ${\bf Z}$ or $\mathbb{Z}$, the integers, that is, whole numbers like zero, 67 and -120.
+\item ${\bf N}$ or $\mathbb{N}$, the natural numbers are a subset of
+  the integers. Unfortunately there is no universal agreement on
+  whether they are the non-negative integers: $\{0,1,2,3,\ldots\}$ or
+  the positive integers: $\{1,2,3,\ldots\}$.
+\item ${\bf Q}$ or $\mathbb{Q}$, the rational numbers; there are numbers of the form $a/b$ where $a$ and $b\not=0$ are integers.
+\item ${\bf R}$ or $\mathbb{R}$, the real numbers; these are the numbers used to measure continuous quantities.
+\item $\forall$ for all, as in $x^2\ge 0\;\forall x\in {\bf Z}$.
+\item $\exists$ exists, as in $\forall x\in {\bf N}\;\exists p\in {\bf N}$ with $p>x$ and $p$ a prime.
+\item iff: if and only if. 
+\end{itemize}
+
+
+\subsubsection*{Work sheet}
+
+
+\begin{enumerate}
+
+\item Use the Euclid algorithm to find $x$ and $y$, integers, so that $9=945x+2421y$.
+
+\item Prove that congruence is an equivalence relation. That is show
+\begin{enumerate}
+\item Reflexivity: $x\equiv x \pmod m$.
+\item Symmetry: if $x\equiv y \pmod m$ then $y\equiv x \pmod m$.
+\item Transitivity: if $x\equiv y \pmod m$ and
+  $y\equiv z \pmod m$ then $x\equiv z \pmod m$.
+\end{enumerate}
+This is not a hard question, the proofs are only a line or so long.
+
+\item Consider the set of all well-defined functions $f(x)$ where $x$
+  is a real number. Now define $f(x)\sim g(x)$ if $f(0)=g(0)$. Prove
+  this is an equivalence relation.
+
+\item Prove the individual properties of congruences. If $a$, $b$,
+  $c$, $d$ are integers and $m$ a positive integer then
+\begin{enumerate}
+\item $a\equiv b\pmod m$ implies $ac\equiv bc\pmod m$.
+\item $a\equiv b\pmod m$ and $c\equiv d\pmod m$ implies $a+c\equiv b+d\pmod m$.
+\item $a\equiv b\pmod m$ and $c\equiv d\pmod m$ implies $ac\equiv bd\pmod m$.
+\item $a\equiv b\pmod m$ implies $a^k\equiv b^k\pmod m$ for positive integers $k$.
+\item $a\equiv b\pmod m$ and $d|m$ for some $d$ a positive integer then $a\equiv b\pmod d$.
+\item $ac\equiv bc\pmod m$ implies $a\equiv b\pmod {m/(c,m)}$.
+\end{enumerate}
+The last one is harder than the rest, start by letting $d=(c,m)$ and noting that this means $c=c'd$ and $m=m'd$.
+
+\item Is -2 congruent to 31 modulo 11? 
+
+\item Is 77 congruent to 5 modulo 12?
+
+\item Find the inverse of 67 modulo 119 and the inverse of 119 modulo 67.
+
+\item By looking at all the possibilities, show that 12 has no inverse modulo 18.
+
+\item Solve $11x\equiv 28 \pmod {37}$.
+
+\item Consider $(p-1)!=(p-1)\cdot (p-2)\ldots 1$ where $p$ is an odd
+  prime. Now modulo $p$ only one and $p-1\equiv -1\pmod p$ are their
+  own inverse; every other element has a unique inverse different from
+  itself. Now by pairing each element with its inverse show that
+  $(p-1)!\equiv -1 \pmod p$. This is known as Wilson's Theorem.
+
+The next few problems are about cryptography, this is in preparation
+for next week when we will look at RSA. The cryptographic schemes here
+are simpler and don't really rely on the number theory we have been
+doing.
+
+\item The key idea behind cryptography is to keep messages secret. One
+  of the most widely know cryptography techniques is called Caesar's
+  cipher. The idea behind this is to shift all the letters a fixed
+  amount down the alphabet. See if you can work out how this works and
+  decipher these texts, each has a different shift.
+\begin{enumerate}
+\item Aqwtg iqppc pggf c dkiigt dqcv
+\item Vlr hklt elt ql tefpqib, alkq vlr, Pqbsb? Vlr grpq mrq vlro ifmp qldbqebo xka yilt.
+\item Rpyewpxpy, jzf nlye qtrse ty spcp. Estd td esp Hlc Czzx.
+\end{enumerate}
+
+\item One problem with Caesar's cipher is that you can just try every
+  shift until you find one that makes sense. There are ways to make
+  this harder, but many schemes are vulnerable to frequency analysis,
+  for example, for Caesar's cipher, if you have lots of text you can
+  just guess the most common letter is coding \lq{}e\rq{} and use that
+  to calculate the shift and more complicated versions of this apply
+  to more complicated ciphers. Vigen\`{e}re's cipher is designed to
+  combat this. In this cipher you do modular arithmetic on letters, so
+  for simplicity ignore the space and punctuation and number the
+  letters zero through to 25. Now, to add two letters add the
+  corresponding numbers modulo 26. Hence a+b=b, b+b=c and c+c=e. Now
+  to use Vigen\`{e}re's cipher choose a code key, say
+  \lq{}casablanca\rq{} and to encode \lq{}tomorrowisanotherday\rq{}
+  you add c to t, a to o, s to m, a to o, b to r, l to r, a to o, n to
+  w, c to i and a to s. At this points you have run out of letters in
+  casablanca, so you start again, c to a, a to n and so on. Work out
+  the Vigen\`{e}re cipher of \lq{}tomorrowisanotherday\rq{} using
+  \lq{}casablanca\rq{} and the cipher of \lq{}bondjamesbond\rq{} using
+  \lq{}drno\rq{}.
+
+\item Decode \lq{}ihczsfmkoyysexgpwkqwmumiwrvlqeqa\rq{} with the key \lq{}maewest\rq{}.
+
+
+\end{enumerate}
+
+\subsubsection*{Exercise sheet}
+
+The difference between the work sheet and the exercise sheet is that
+the solutions to the exercise sheet won't be given and the problems
+are designed to be more suited to working on on your own, though you
+are free to discuss them in the work shop if you finish the work sheet
+problems. Selected problems from the exercise sheet will be requested
+as part of the continual assessment portfolio.
+
+\begin{enumerate}
+
+\item What is the inverse of 606 modulo 77? What is the inverse of 77 modulo 606?
+
+\item Is 1111 congruent to 11 modulo 111?
+
+\item Solve $42x\equiv 90 \pmod {156}$.
+
+\item For the numbers from twenty to thirty say which are congruent to
+  five modulo 13 and which are congruent to 13 modulo five.
+
+\item Show that if $n$ is odd then $n^2\equiv 1\pmod 8$.
+
+\item Let $p$ be an odd prime. Find the values of $x$ so that it is
+  its own inverse modulo $p$.
+
+\item Write a short program that allows you to input three numbers,
+  $a$, $b$ and $c$ of modest size and tells you if $a\equiv b \pmod
+  c$.
+
+\item Write a program that tests if $a$ has an inverse modulo $m$ and
+  which finds it if it does.
+
+\item Write a program that automatically attempts to decode a passage
+  encrypted using the Caesar cipher by assuming the most letter is 'e'.
+
+\end{enumerate}
+
+
+\subsubsection*{Challenge}
+There is either a kitkat and copy of \emph{What is . . .} or a box of
+chocolates, your choice, for the first person to solve
+\texttt{projecteuler.net} problem 59. Provide proof by sending a
+screen shot of the congratulations page, I will announce on the
+website when the problem is solved. There is also a grand prize of a
+blown, that is empty, ostrich egg for the first person to solve 25
+\texttt{projecteuler.net} problems, prove it with a screen shot of the
+progress page.
+
+\end{document}

@@ -1,0 +1,177 @@
+\documentclass[12pt]{article}
+\usepackage{a4wide, amsfonts, epsfig,bbding}
+
+\begin{document}
+\begin{center}
+{\bf EMAT10001 Lecture 7.}\\[1cm]{} Conor Houghton 2013-11-10
+\end{center}
+\subsection*{Preface} 
+These are outline notes for lecture 7; this lecture introduces group
+theory. As usual there is a bounty of between 20p and \pounds 2 for
+errors, you can tell me at the end of a lecture or email me at
+\texttt{conor.houghton{@}bristol.ac.uk}. A manicule (\HandLeft{} or
+\HandRight) is used to indicate that a proof, derivation or piece of
+material has been omitted from the lecture but will be covered in the
+workshop.
+
+\subsection*{Introduction}
+
+This lecture is about group theory; group theory is a huge subject
+with a myriad of diverse applications. Here, though, we will only
+touch on it and the main message is one about abstraction. In
+mathematics we can start in one place, here, modular arithmetic,
+codify the structure, examine how the structure unfolds and then apply
+it to other sorts of problems and to other applications, often ones
+that are very different to the one we started with.
+
+\subsection*{Equivalence classes}
+Say we are working in modular arithmetic, for example as part of
+cryptography and we are presented with a problem, say to solve
+\begin{equation}
+3x\equiv 1 \pmod{8}
+\end{equation}
+Now we would immediately apply the Euclid algorithm
+\begin{eqnarray}
+8&=&2\cdot 3+2\cr
+3&=&2+1
+\end{eqnarray}
+so $1=3-2$ and $1=3-(8-2\cdot 3)$ so $1=3\cdot 3-8$ and $3^{-1}\equiv 3\pmod{8}$. We can check this
+\begin{equation}
+3\cdot 3=9\equiv 1\pmod{8}.
+\end{equation}
+Now, at this stage we are used to the idea that $3^{-1}\equiv
+3\pmod{8}$ means that $3^{-1}\equiv 11 \pmod{8}$ as well, because
+$3\equiv 11\pmod{8}$ and we can check
+\begin{equation}
+3\cdot 11=33\equiv 1\pmod{8}
+\end{equation}
+In the same way to know all about modular arithmetic modulo eight we only need to look at the numbers from zero to seven, everything else can be worked out from them using the modular properties, so
+\begin{equation}
+19\cdot 11=209\equiv 1\pmod{8}
+\end{equation}
+since $209=26\cdot 8+1$ but we could just as easily go
+\begin{equation}
+19\cdot 11\equiv 3\cdot 3\equiv 1\pmod{8}
+\end{equation}
+because $19\equiv 11\equiv 3\pmod{8}$.
+
+The idea of equivalence classes is to deal with this. If you have an equivalence relation, $\sim$ say, on some set $X$ and $x\in X$ then \textsl{the equivalence class of $x$} often written $[x]$ is the set of $x$ and all things equivalent to it
+\begin{equation}
+[x]=\{y|y\sim x\}
+\end{equation}
+So here our equivalence relation is equivalence modulo eight then, for example
+\begin{equation}
+[3]=\{y|y\equiv 3\pmod{8}\}=\{3+8k|k\in\mathbf{Z}\}=\{\ldots -13,-5,3,11,19,\ldots\}
+\end{equation}
+and we call \lq{}3\rq{} a representative of the equivalence class
+$[3]$. 
+
+Now, when we are interested in arithmetic modulo eight we look at the
+relationship between the equivalence classes, so
+\begin{equation}
+[3]\cdot[3]=[3\cdot 3]=[1]\pmod{8}
+\end{equation}
+and that stands in for 
+\begin{equation}
+3\cdot 3\equiv 1\pmod{8}
+\end{equation}
+as well as 
+\begin{equation}
+19\cdot 11\equiv 1\pmod{8}
+\end{equation}
+and the whole mess of different representations of the same modular
+product. Of course, this depends on equivalence classes \lq{}playing
+nice\rq{} with addition. The mathematical way to say this is that addition is \textsl{well defined} with respect to this equivalence relation
+\begin{equation}
+[a]+[b]=[a+b]
+\end{equation}
+no matter which representatives $a$ and $b$ we use. We won't go too
+much into that today, but we proved, or at least discussed, lemmas
+that show that addition and multiplication are well defined with
+respect to the modulus.
+
+\subsubsection*{Groups}
+Now lets look at multiplication modulo five; we will ignore $[0]$ for reasons that will become clear
+\begin{center}
+\begin{tabular}{l|llll}
+$\cdot$ &$[1]$&$[2]$&$[3]$&$[4]$\cr
+\hline
+$[1]$&$[1]$&$[2]$&$[3]$&$[4]$\cr
+$[2]$&$[2]$&$[4]$&$[1]$&$[3]$\cr
+$[3]$&$[3]$&$[1]$&$[4]$&$[2]$\cr
+$[4]$&$[4]$&$[3]$&$[2]$&$[1]$
+\end{tabular}
+\end{center}
+This looks quite hard to read because of all the brackets, so lets use some other symbols, say $e=[1]$, $[1]$ is the \textsl{identity}, multiplying by $[1]$ doesn't change anything and $e$ is often used for identity, and $[2]=a$, $[3]=b$ and $[4]=c$, then the multiplication table becomes
+\begin{center}
+\begin{tabular}{l|llll}
+$\cdot $&$e$&$a$&$b$&$c$\cr
+\hline
+$e$&$e$&$a$&$b$&$c$\cr
+$a$&$a$&$c$&$e$&$b$\cr
+$b$&$b$&$e$&$c$&$a$\cr
+$c$&$c$&$b$&$a$&$e$
+\end{tabular}
+\end{center}
+
+This multiplication table has lots of the properties you might expect
+a multiplication table to have. Formally, we say a set $X$ is a
+\textsl{group} if there is a map $\cdot$ that maps two elements $x$
+and $y$ to a third element $x\cdot y$ and
+\begin{itemize}
+\item If $x$ and $y$ are two elements of the set $X$ then $x\cdot y$ is
+  also an element.
+\item It is associative: $(x\cdot y)\cdot z=x\cdot(y\cdot z)$.
+\item There is an \textsl{identity} element, $e\in X$ such that
+  $x\cdot e=e\cdot x=x$ for all elements $x\in X$.
+\item Every element of $X$ has an inverse, so, for all $x\in X$ there exists an element $x^{-1}\in X$ such that $x\cdot x^{-1}=x^{-1}\cdot x=e$.
+\end{itemize}
+Here, $\cdot$ is multiplication modulo five and the set $X$ is
+\begin{equation}
+X=\{[1],[2],[3],[4]\}
+\end{equation}
+If we had included $[0]$ we would not have gotten a group because
+$[0]$ has no inverse.
+
+Now, we said at the outset that groups occur in a huge number of
+different context. Here is another one. Imagine the rotational
+symmetries of a square. If you have a square you can rotate it by
+$\pi/2=90^\circ$ clockwise around the center line, or by
+$\pi=180^\circ$ or by $3\pi/2=270^\circ$; all of these are
+symmetries, as is not rotating it at all. Now lets call rotating by no
+degrees $R_0$ and refer to rotating by $90^\circ$ as $R_{90}$, rotating by $180^\circ$ as $R_{180}$ and rotating by $270^\circ$ as $R_{270}$. You can compose these, if you rotate by $90^\circ$ after already rotating by $90^\circ$ you are doing $R_{90}$ after $R_{90}$, and this is the same as doing $R_{180}$ all in one go. We write
+\begin{equation}
+R_{180}=R_{90}\circ R_{90}
+\end{equation}
+and, as another example,
+\begin{equation}
+R_{0}=R_{90}\circ R_{270}
+\end{equation}
+where we read $\circ$ as \lq{}after\rq{} where we use that rotating by $360^\circ$ is the same as not rotating at all. In the same way we can make up the multiplication table
+\begin{center}
+\begin{tabular}{l|llll}
+$\circ $&$R_0$&$R_{90}$&$R_{270}$&$R_{180}$\cr
+\hline
+$R_0$&$R_0$&$R_{90}$&$R_{270}$&$R_{180}$\cr
+$R_{90}$&$R_{90}$&$R_{180}$&$R_{0}$&$R_{270}$\cr
+$R_{270}$&$R_{270}$&$R_0$&$R_{180}$&$R_{90}$\cr
+$R_{180}$&$R_{180}$&$R_{270}$&$R_{90}$&$R_0$
+\end{tabular}
+\end{center}
+Of course, it doesn't matter what order I write the rows and columns,
+I wrote it in the order I did with $R_{270}$ in-between $R_{90}$ and
+$R_{180}$ for later convenience. 
+
+It would be easy to check that this is a group, however, there is a
+stronger result: it is the same group. If you replace $R_0$ with $e$,
+$R_{90}$ with $a$, $R_{270}$ with $b$ and $R_{180}$ with $c$ this is
+exactly the same as the group we looked at before. This is an example
+of a \textsl{group isomorphism}; the two groups are the same up to a
+change in the symbols used. We say the group of rotational symmetries
+of a square is isomorphic to the multiplicative group modulo five.
+
+This is an example of two seemingly different things being the same when looked at abstractly. In fact, in a sense, there aren't that many different groups, with four elements, there are two: the one above and another called the \textsl{Klein four group}\HandLeft.
+
+
+
+\end{document}

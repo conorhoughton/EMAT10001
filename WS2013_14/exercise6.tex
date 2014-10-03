@@ -1,0 +1,100 @@
+\documentclass[12pt]{article}
+
+\usepackage{a4wide, amsfonts, epsfig,bbold}
+
+\begin{document}
+\begin{center}
+{\bf EMAT10001 Exercise Sheet 6.}\\[1cm]{} Conor Houghton 2013-11-2
+\end{center}
+\subsubsection*{Introduction} 
+There is the usual bounty for errors and typos, 20p to \pounds 2
+depending on how serious it is.
+
+Some of these questions are taken from \emph{Number Theory with
+  Computer Applications} by Ramanujachary Kumanduri and Cristina
+Romero.
+
+\subsubsection*{Useful facts}
+\begin{itemize}
+\item Fermat's Little Theorem. Let $p$ be a prime. Then $a^p\equiv a\pmod p$. In particular, if $p\not|a$ then $a^{p-1}\equiv 1 \pmod p$.
+\item Euler's Theorem. If $a$ and $m$ are integers such that $(a,m)=1$ then 
+\begin{equation}
+a^{\phi(m)}\equiv 1 \pmod m
+\end{equation}
+\item Pohlig-Hellman exponentiation cipher. Let $p$ be a prime and $e$
+  an integer such that $0<e<p-1$ and $(e,p-1)=1$, these are the secret
+  key. If $m_i$ is a text block with $0<m_i<p$ then
+\begin{equation}
+c(m_i)\equiv m_i^e\pmod{p}
+\end{equation}
+is the encoded message and
+\begin{equation}
+[c(m_i)]^d\equiv m_i\pmod{p}
+\end{equation}
+returns the original message where $d\equiv e^{-1}\pmod{p-1}$.
+\item RSA public key cipher. Let $m$ be an integer with $n=pq$ and $p$ and $q$ primes, let $0<e<\phi(n)=(p-1)(q-1)$ be an integer such that $(e,\phi(n)=1$. $n$ and $e$ are the public keys, $p$, or equivalently $q$ or equivalently $\phi(n)$ is the private key. If $m_i$ is a text block with $0<m_i<n$ then
+\begin{equation}
+c(m_i)\equiv m_i^e\pmod{n}
+\end{equation}
+is the encoded message and
+\begin{equation}
+[c(m_i)]^d\equiv m_i\pmod{n}
+\end{equation}
+returns the original message where $d\equiv e^{-1}\pmod{\phi(n)}$.
+
+\item Handy alphabet chart
+\begin{center}
+\begin{tabular}{ll|ll|ll|ll|ll|ll|ll|ll}
+a&0&b&1&c&2&d&3&
+e&4&f&5&g&6&h&7\\
+i&8&j&9&k&10&l&11&
+m&12&n&13&o&14&p&15\\
+q&16&r&17&s&18&t&19&
+u&20&v&21&w&22&x&23\\
+y&24&z&25&&&&&&&&&&&&
+\end{tabular}
+\end{center}
+\item If $n=\prod p_i^{r_i}$ for primes $p_i$ and integers $r_i$ then 
+\begin{equation}
+\phi(n)=n\prod\left(1-\frac{1}{p_i}\right)
+\end{equation}
+\end{itemize}
+
+\subsubsection*{Some common mathematical notation}
+\begin{itemize}
+\item The Greek alphabet (little, capital and name): $\alpha A$ alpha, $\beta B$ beta, $\gamma \Gamma$ gamma, $\delta \Delta$ delta, $\epsilon E$ epsilon, $\zeta Z$ zeta, $\eta H$ eta, $\theta \Theta$ theta, $\iota I$ iota, $\kappa K$ kappa, $\lambda \Lambda$ lambda, $\mu M$ mu, $\nu N$ nu, $\xi \Xi$ xi, $oO$ omicron, $\pi \Pi$ pi, $\rho P$ rho, $\sigma \Sigma$ sigma, $\tau T$ tau, $\upsilon \Upsilon$ upsilon, $\phi \Phi$ phi, $\chi X$ chi, $\psi \Psi$ psi and $\omega \Omega$ omega. 
+\item Lots of Greek letters are used in mathematics with different meanings in different contexts. Some are rarely used, in particular, omicron and lots of the capitals are very close or identical to Latin letters and are not used. $\xi$ and $\zeta$ are less common because they can be difficult to write, they are sometimes used as small increments in $x$ and $z$. There are some that are easily confused that are still used, such as $\nu$ and $\kappa$. 
+\item Sums and products. Say we have a set $X=\{x_0,x_1,x_2,x_3,x_4\}$ then
+\begin{eqnarray}
+\sum_{i=0}^4x_i&=&x_0+x_1+x_2+x_3+x_4\cr
+\prod_{i=0}^4x_i&=&x_0x_1x_2x_3x_4
+\end{eqnarray}
+or we might write
+\begin{eqnarray}
+\sum_{x_i\in X}x_i&=&x_0+x_1+x_2+x_3+x_4\cr
+\prod_{x_i\in X}x_i&=&x_0x_1x_2x_3x_4
+\end{eqnarray}
+and don't be surprised to find
+\begin{eqnarray}
+\sum x_i&=&x_0+x_1+x_2+x_3+x_4\cr
+\prod x_i&=&x_0x_1x_2x_3x_4
+\end{eqnarray} 
+sometimes the bit telling you which $x_i$s are being added or multiplied is left out if it seems obvious what is meant.
+\end{itemize}
+
+
+\subsubsection*{Exercise sheet}
+
+\begin{enumerate}
+\item Use Euler's theorem to compute
+\begin{enumerate}
+\item $3^{340}\pmod{341}$
+\item $7^{8^9}\pmod{100}$
+\item $2^{10000}\pmod{121}$
+\end{enumerate}
+\item Suppose the $n=10088821$ is the product of two primes and $\phi(n)=10082272$. What are the prime factors of $n$?
+\item Consider writing a program that implements RSA; the programs on the website called \texttt{power.cpp}, \texttt{power\_faster.cpp} and \texttt{rsa\_two\_digit.cpp} might help.
+\end{enumerate}
+\subsubsection*{Challenge}
+This week's challenge are \texttt{projecteuler.net} problems 87 and 97; first one to answer either gets a copy of the book and a kit kat or a handful of choclate, depending on whether they have won before or not.
+\end{document}

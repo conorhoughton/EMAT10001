@@ -1,0 +1,173 @@
+
+\documentclass[12pt]{article}
+
+\usepackage{a4wide, amsfonts, epsfig}
+
+\begin{document}
+\begin{center}
+{\bf EMAT10001 Workshop Sheet 13 outline solutions.}\\[1cm]{} Conor Houghton 2014-01-26
+\end{center}
+
+\subsubsection*{Work sheet}
+
+\begin{enumerate}
+
+\item Revise differentiating; find $df/dx$ for the following.
+\begin{enumerate}
+\item $f(x)=1/x$
+\item $f(x)=(1+x)^3$, do this one both by using the chain rule and by multiplying it out.
+\item $f(x)=A\exp(\lambda x)$ where $A$ and $\lambda$ are constants.
+\item $f(x)=x\exp(x)$
+\item $f(x)=\exp(x^2)$
+\item $f(x)=\exp(1/x)$
+\item $f(x)=x\exp(1+x)$
+\end{enumerate}
+
+\textbf{Solutions: } So $f(x)=1/x=x^{-1}$ then
+$f'(x)=(-1)x^{-2}=-1/x^2$ where we are using the notation
+$f'(x)=df(x)/dx$. For $(1+x)^3$ let $g=1+x$ so $dg/dx=1$ and
+$dg^3/dg=3g^2$ giving
+\begin{equation}
+f'(x)=2(1+x)^2
+\end{equation}
+The other way
+\begin{equation}
+f(x)=(1+x)^3=1+3x+3x^2+x^3
+\end{equation}
+so
+\begin{equation}
+f'(x)=3+6x^2+3x^2=3(1+x)^2
+\end{equation}
+With $A\exp(\lambda x)$ we get $A\lambda \exp(\lambda x)$, we can do
+this as a chain rule with $g(x)=\lambda x$. Next, for $f(x)=x\exp(x)$
+using the product rule
+
+\begin{equation}
+f'(x)=e^x+xe^x
+\end{equation}
+For $f(x)=\exp(x^2)$ use the chain rule again to get $2xe^{x^2}$. Next $f(x)=\exp(1/x)$ then 
+\begin{equation}
+f'(x)=-\frac{e^{1/x}}{x^2}
+\end{equation}
+by the chain rule. Finally, using the chain rule and the product rule, if $f(x)=x\exp(1+x)$ then $f'(x)=\exp(1+x)+x\exp(1+x)$.
+
+\item Using the power series, work out the value of $e$ to five decimal places.\\
+\textbf{Solution: } Well $e=2.71828\ldots$, now the power series gives us $1$, $2$, $2.5$, $2.6666666\ldots$, $2.7083333\ldots$, $2.7166666\ldots$, $2.7180555\ldots$, $2.718243\ldots$, $2.7182787\ldots$, $2.718281\ldots$ and doing a few more to check it has stopped changing the first five places, we see it gets it after $n=9$.
+
+
+\item By substituting in $f(t)=A\exp(\lambda t)$ solve 
+\begin{equation}
+\frac{d}{dt}f(t)=-2f(t)
+\end{equation}
+where $f(0)=5$. Substituting the $f(t)$ into the equation should give $\lambda$, fixing the initial condition, that is, the value of $f(0)$, should give $A$.\\
+\textbf{Solution: } Well $df/dt=A\lambda \exp(\lambda t)$ and that has to be equal to $-2f=-2A\exp(\lambda t)$ which it is provided $\lambda=-2$ so
+\begin{equation}
+f(t)=Ae^{-2t}
+\end{equation}
+and now we have to fix $A$, if $f(0)=5$ and using $e^0=1$ we have $A=5$ and
+\begin{equation}
+f(t)=5e^{-2t}
+\end{equation}
+
+
+\item 
+\item A breeding pair of rabbits are released on an island of endless
+  grass. Each year each rabbit has five kits on average, these, in this
+  approximation, grow up instantly. This rate is the average per rabbit,
+  don't worry about the gender, the idea is that the doe have ten
+  kits and the bucks none so the average is five. Thus, in this model
+  if $P$ is the population of rabbits, the rate of increase is
+  $dP/dt=5P$, ten kits for each member of the population and
+  $P(0)=2$. What is the population after seven years.\\
+\textbf{Solution: } So the equation is 
+ \begin{equation}
+\frac{dP}{dt}=10P
+\end{equation}
+and substituting $P=A\exp(\lambda t)$ as before we get $\lambda =10$,
+if $P(0)=2$ this gives $A=2$ so
+\begin{equation}
+P(t)=2e^{5t}
+\end{equation}
+and 
+\begin{equation}
+P(7)=2e^{35}=3172026904626861
+\end{equation}
+
+\item Caesium-137 has a half-life of about 30 years; this means that a
+  given Caesium-137 atom has a 0.0231 chance of decaying in a given
+  year. To check this, write down a differential equation for the
+  decay of Caesium-137 and solve it; check that the amount has halved
+  after 30 years.\\
+\textbf{Solution: } We have
+\begin{equation}
+\frac{dA}{dt}=-0.0231A
+\end{equation}
+where $A$ is the amount. Substituting in $C\exp{-rt}$ we find
+\begin{equation}
+A=A_0e^{-0.0231t}
+\end{equation}
+and if $t=30$ then $A=0.5A_0$.
+
+\item The natural log is the inverse of the exponential:
+\begin{equation}
+\ln e^x=x
+\end{equation}
+Check this using your calculator for a couple of values of $x$.
+
+
+\item Find a formula relating the decay constant and the half life;
+  the decay constant is the chance of an individual atom decaying in a
+  given period of time, the 0.0231 in the example above.\\
+\textbf{Solution: } Well if we call the half-life $t_{0.5}$ then
+\begin{equation}
+0.5A_0=A_0e^{-rt_{0.5}}
+\end{equation}
+where $r$ is the decay constant. Now this means
+\begin{equation}
+2=e^{rt_{0.5}}
+\end{equation}
+and 
+\begin{equation}
+t_{0.5}=\frac{\ln{2}}{r}
+\end{equation}
+
+
+\item I discover a new craze, everyday, on average, I manage to
+  persuade one new person to start in on my craze, they do the same
+  and so on and so on. How long before everyone in the world shares my
+  craze assuming the growth rate stays the same. Why is this assumption absurd?\\
+\textbf{Solution: } Well the rate is one so everyone in the world has caught my craze at
+\begin{equation}
+7209000000=exp(t)
+\end{equation}
+so $t=\ln{7209000000}=22.7$ days. This is clearly absurd since as time passes it will be harder and harder to find people to pass the craze on to.
+
+
+\item What is the $df/dx$ at $x=0$ for $f=\exp(-1/x)$, what about the second derivative 
+\begin{equation}
+\frac{d^2f}{dx^2}=\frac{d}{dx}\frac{df}{dx}
+\end{equation}
+at $x=0$. Can you guess what happens to higher derivatives at $x=0$?
+To do this question you need to know that the exponential $\exp(-x)$
+goes to zero as $x$ goes to infinity and, in fact, does so faster than
+any polynomial!\\ 
+\textbf{Solutions: } Well
+\begin{equation}
+f'(x)=\frac{e^{-1/x}}{x^2}
+\end{equation}
+and as $x\rightarrow 0$ we have $\exp{-1/x}\rightarrow 0$ and does so faster than $x^2$ goes to zero, so $f'(0)=0$. Finding the next derivative
+\begin{equation}
+f''(x)=-\frac{2}{x^3}e^{-1/x}-\frac{1}{x^3}e^{-1/x}
+\end{equation}
+so $f''(0)=0$ for the same reason. In fact, it is clear that the $n$th derivative looks like
+\begin{equation}
+f^{(n)}=\frac{\mbox{(some stuff)}e^{-1/x}}{\mbox{(other stuff)}}
+\end{equation}
+where all the \lq{}stuff\rq{} is polynomials in $x$ so $f^{(n)}(0)=0$
+for all $n$. The point of all this is that $\exp(-1/x)$ doesn't have a
+power series, the Taylor expansion, which we will look at later, is all zero.
+
+
+\end{enumerate}
+
+\end{document}

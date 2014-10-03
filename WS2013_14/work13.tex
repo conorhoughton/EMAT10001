@@ -1,0 +1,160 @@
+\documentclass[12pt]{article}
+
+\usepackage{a4wide, amsfonts, epsfig}
+
+\begin{document}
+\begin{center}
+{\bf EMAT10001 Workshop Sheet 13.}\\[1cm]{} Conor Houghton 2014-01-26
+\end{center}
+\subsubsection*{Introduction} 
+This worksheet is about differentiation, the exponential function and
+the growth equation. There is the usual bounty for errors and typos, 20p to \pounds 2
+depending on how serious it is.
+
+\subsubsection*{Useful facts}
+\begin{itemize}
+\item Recall the rules of differentiation
+\begin{itemize}
+\item Chain rule: 
+\begin{equation}
+\frac{d}{dx}f(g(x))=\frac{d}{dx}g(x)\frac{d}{dg}f(g)
+\end{equation}
+\item Product rule:
+\begin{equation}
+\frac{d}{dx}u(x)v(x)=u(x)\frac{d}{dx}v(x)+v(x)\frac{d}{dx}u(x)
+\end{equation}
+\item Powers:
+\begin{equation}
+\frac{d}{dx}x^n=nx^{n-1}
+\end{equation}
+\end{itemize}
+\item The exponential function as the limit of continual compounding
+\begin{equation}
+\exp(x)=\lim_{n\rightarrow \infty}\left(1+\frac{x}{n}\right)^n
+\end{equation}
+\item The series for the exponential
+\begin{equation}
+\exp(x)=1+x+\frac{1}{2}x^2+\frac{1}{3!}x^3+\frac{1}{4!}x^4+\frac{1}{5!}x^5+\ldots
+\end{equation}
+\item Notational note: $df(t)/dt$ is often written $\dot{f}(t)$ and $df(x)/dx$ is often written $f'(x)$. The first notation is due to Leibnitz and is useful for remembering the chain rule and similar, the second is useful for writing the derivative at a particular point, say we want the derivative at $x=x_0$, where $x_0$ is a constant, we can write
+\begin{equation}
+f'(x_0)=\left.\frac{df}{dx}\right|_{x=x_0}
+\end{equation}
+
+\end{itemize}
+
+
+\subsubsection*{Work sheet}
+
+\begin{enumerate}
+
+\item Revise differentiating; find $df/dx$ for the following.
+\begin{enumerate}
+\item $f(x)=1/x$
+\item $f(x)=(1+x)^3$, do this one both by using the chain rule and by multiplying it out.
+\item $f(x)=A\exp(\lambda x)$ where $A$ and $\lambda$ are constants.
+\item $f(x)=x\exp(x)$
+\item $f(x)=\exp(x^2)$
+\item $f(x)=\exp(1/x)$
+\item $f(x)=x\exp(1+x)$
+\end{enumerate}
+
+\item Using the power series, work out the value of $e$ to five decimal places.
+
+\item By substituting in $f(t)=A\exp(\lambda t)$ solve 
+\begin{equation}
+\frac{d}{dt}f(t)=-2f(t)
+\end{equation}
+where $f(0)=5$. Substituting the $f(t)$ into the equation should give $\lambda$, fixing the initial condition, that is, the value of $f(0)$, should give $A$.
+
+\item A breeding pair of rabbits are released on an island of endless
+  grass. Each year each rabbit has five kits on average, these, in this
+  approximation, grow up instantly. This rate is the average per rabbit,
+  don't worry about the gender, the idea is that the doe have ten
+  kits and the bucks none so the average is five. Thus, in this model
+  if $P$ is the population of rabbits, the rate of increase is
+  $dP/dt=5P$, ten kits for each member of the population and
+  $P(0)=2$. What is the population after seven years.
+
+\item Caesium-137 has a half-life of about 30 years; this means that a
+  given Caesium-137 atom has a 0.0231 chance of decaying in a given
+  year. To check this, write down a differential equation for the
+  decay of Caesium-137 and solve it; check that the amount has halved
+  after 30 years.
+
+\item The natural log is the inverse of the exponential:
+\begin{equation}
+\ln e^x=x
+\end{equation}
+Check this using your calculator for a couple of values of $x$.
+
+\item Find a formula relating the decay constant and the half life;
+  the decay constant is the chance of an individual atom decaying in a
+  given period of time, the 0.0231 in the example above.
+
+\item I discover a new craze, everyday, on average, I manage to
+  persuade one new person to start in on my craze, they do the same
+  and so on and so on. How long before everyone in the world shares my
+  craze assuming the growth rate stays the same. Why is this assumption absurd?
+
+\item What is the $df/dx$ at $x=0$ for $f=\exp(-1/x)$, what about the second derivative 
+\begin{equation}
+\frac{d^2f}{dx^2}=\frac{d}{dx}\frac{df}{dx}
+\end{equation}
+at $x=0$. Can you guess what happens to higher derivatives at $x=0$?
+To do this question you need to know that the exponential $\exp(-x)$
+goes to zero as $x$ goes to infinity and, in fact, does so faster than
+any polynomial! This means that there is a certain amount of guessing
+involved since we haven't done limits, which makes this a hard question.
+
+\end{enumerate}
+
+\subsubsection*{Exercise sheet}
+
+The difference between the work sheet and the exercise sheet is that
+the solutions to the exercise sheet won't be given and the problems
+are designed to be more suited to working on on your own, though you
+are free to discuss them in the work shop if you finish the work sheet
+problems. Selected problems from the exercise sheet will be requested
+as part of the continual assessment portfolio.
+
+\begin{enumerate}
+
+\item Solve 
+\begin{equation}
+\frac{df}{dt}=5f
+\end{equation}
+with $f(0)=12$.
+
+\item Differentiate 
+\begin{equation}
+f(x)=x^3e^{x^3}
+\end{equation}
+
+\item Solve
+\begin{equation}
+\frac{df}{dt}=5(1-f)
+\end{equation}
+with $f(0)=0$.
+
+\item The growth equation is not a realistic model of growth if there
+  is a finite resource the population requires, this might be food, or
+  space, or available uninfected individuals. The Verhulst-Pearl
+  equation is an alternative that includes a \textsl{carrying
+    capacity} for the environment, growth depends not only on the
+  population but the residual carrying capacity. A simple
+  Velhulst-Pearl equation is
+\begin{equation}
+\frac{dP}{dt}=P(1-P)
+\end{equation}
+More complicated versions include constants which have been set to one here. Solving this equation is tricky, it involves direct integration and a partial fractions expansion. However, it is easier to check the solution is indeed a solution, the solution with $P(0)=1/2$ is
+\begin{equation}
+P=\frac{1}{1+\exp(-t)}
+\end{equation}
+Check this.
+\end{enumerate}
+
+\subsubsection*{Challenge}
+First three to get onto level five, that is complete four levels, of \texttt{http://www.pythonchallenge.com/} gets chocolate. Send a screenshot.
+
+\end{document}

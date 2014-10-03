@@ -1,0 +1,189 @@
+\documentclass[12pt]{article}
+
+\usepackage{a4wide, amsfonts, epsfig}
+
+\begin{document}
+\begin{center}
+{\bf EMAT10001 Workshop Sheet 15.}\\[1cm]{} Conor Houghton 2014-02-12
+\end{center}
+
+\subsubsection*{Work sheet}
+
+\begin{enumerate}
+
+\item The general second order Runge Kutta method for $\dot{y}=f(y)$ is
+\begin{eqnarray}
+k_1&=&f(y_n)\cr
+k_2&=&f(y_n+\alpha \delta t k_1)
+\end{eqnarray}
+and
+\begin{equation}
+y_{n+1}=y_n+\left[\left(1-\frac{1}{2\alpha}\right)k_1+\frac{1}{2\alpha}k_2\right]\delta t
+\end{equation}
+Show that this gives the Taylor series up to second order. Note that
+$\alpha=1/2$ gives the midpoint method. This was the last question on
+last week's worksheet, so lots of people didn't get a chance to think
+about it and it worth doing since it does give a good idea of how
+Runge Kutta works.
+
+\textbf{Solution: } (cut and pasted from work sheet 14
+solutions). Same craic as in the lectures, expand out $k_2$ using the
+Taylor series
+\begin{equation}
+k_2=f(y_n+\alpha \delta t k_1)=f(y_n)+\left.\frac{df}{dy}\right|_{y=y_n}\alpha \delta t k_1+\ldots
+\end{equation}
+then use the chain rule 
+\begin{equation}
+\frac{df}{dy}k_1=\frac{df}{dy}\frac{dy}{dt}=\frac{df}{dt}=\frac{d^2f}{dt^2}
+\end{equation}
+so
+\begin{equation}
+k_2=\dot{y}(t_n)+\alpha \delta t \ddot{y}(t_n)+\ldots
+\end{equation}
+so
+\begin{equation}
+y_{n+1}=y_n+\left[\left(1-\frac{1}{2\alpha}\right)k_1+\frac{1}{2\alpha}k_2\right]\delta t=y(t_n)+\dot{y}(t_n)+\delta t \ddot{y}(t_n)+\ldots
+\end{equation}
+which is the first three terms of the Taylor expansion, as required.
+
+
+\item Here is a second order differential equation
+\begin{equation}
+\frac{d^2f}{dt^2}+\frac{df}{dt}-6f=0
+\end{equation}
+This can also be solved using an ansatz of the form $A\exp{(\lambda
+  t)}$; the difference is that there will be two different $\lambda$s, lets say $\lambda_1$ and $\lambda_2$. Since the equation is linear you can add them to give a solution with two arbitrary constants:
+\begin{equation}
+f(t)=A_1e^{\lambda_1t}+A_2e^{\lambda_2 t}
+\end{equation}
+This is what you expect for a second order differential equation, you
+need two initial conditions, here use $f(0)=0$ and $\dot{f}(0)=-1$.
+
+\textbf{Solution: } Substitute in the ansatze, so $\dot{f}(t)=A\lambda
+\exp(\lambda t)$ and $\ddot{f}(t)=A\lambda^2 \exp(\lambda t)$, then
+cancel the $A$ and the exponential part to get
+\begin{equation}
+\lambda^2+\lambda-6=0
+\end{equation}
+which should factorize nicely if the question has been set nicely, which this has:
+\begin{equation}
+(\lambda-2)(\lambda+3)=0
+\end{equation}
+that is $\lambda=2$ or $\lambda=-3$ giving
+\begin{equation}
+f(t)=A_1e^{2t}+A_2e^{-3t}
+\end{equation}
+Now this means $f(0)=A_1+A_2$ and, since
+\begin{equation}
+\dot{f}(t)=2A_1e^{2t}-3A_2e^{-3t}
+\end{equation}
+we have $\dot{f}(0)=2A_1-3A_2$. Thus, the initial condition says $f(0)=0$ so $A_1=-A_2$ and $\dot{f}(0)=2A_1-3A_2=-1$, hence $5A_1=-1$ and
+\begin{equation}
+f(t)=-\frac{1}{5}e^{2t}+\frac{1}{5}e^{-3t}
+\end{equation}
+
+\item Here is another second order differential equation
+\begin{equation}
+\frac{d^2f}{dt^2}-4f=0
+\end{equation}
+Solve this with $f(0)=0$ and $\dot{f}(0)=1$.
+
+\textbf{Solution: } The ansatz gives
+\begin{equation}
+\lambda^2=4
+\end{equation}
+or 
+\begin{equation}
+f(t)=A_1e^{2t}+A_2e^{-2t}
+\end{equation}
+and then the initial condition is $A_1+A_2=0$ and $2A_1-2A_2=1$ so $A_1=1/4$ and $A_2=-1/4$
+\begin{equation}
+f(t)=\frac{1}{4}e^{2t}+\frac{1}{4}e^{-2t}
+\end{equation}
+
+
+\item This differential equation
+\begin{equation}
+\frac{d^2f}{dt^2}+f=0
+\end{equation}
+with $f(0)=0$ and $\dot{f}(0)=1$ doesn't work so well, you end up with
+complex $\lambda$s, however, if you keep your nerve and use the Euler formula
+\begin{equation}
+e^{i\theta}=\cos{\theta}+i\sin{\theta}
+\end{equation}
+it will work out; just bundle $A_1+A_2$ into one arbitrary constant
+$C_1=A_1+A_2$ and $i(A_1-A_2)$ into another $C_2=i(A_1-A_2)$; $C_1$
+and $C_2$ should turn out to be real, the detour through complex
+numbers is just that, a detour.
+
+
+\textbf{Solution: } The ansatz gives
+\begin{equation}
+\lambda^2=-1
+\end{equation}
+or 
+\begin{equation}
+f(t)=A_1e^{it}+A_2e^{-it}
+\end{equation}
+Now using the Euler formula
+\begin{equation}
+f(t)=A_1(\cos{t}+i\sin{t})+A_2(\cos{t}-i\sin{t})
+\end{equation}
+or
+\begin{equation}
+f(t)=C_1\cos{t}+C_2\sin{t}
+\end{equation}
+Of course while $C_1$ and $C_2$ could be complex, they aren't going to
+be for a problem with real initial conditions. $f(0)=0$ says $C_1=0$,
+$\dot{f}(0)=1$ says $C_2=1$.
+
+\item Some integration examples; integrate
+\begin{enumerate}
+\item $\int (2x+2)e^{x^2+2x+3}dx$
+\item $\int (x^2+1)/(x^3+3x)dx$
+\item $\int \sqrt{x}dx$
+\item $\int \sqrt{7x+1}dx$
+\end{enumerate}
+
+\textbf{Solution: } So for the first one let $s=x^2+2x+3$ and it
+become a simple exponential integral since $(2x+2)dx=ds$, the second,
+let $s=x^3+3x$ and it become $(\int 1/s ds)/3$ because
+$(3x^2+3)dx=ds$. The next one is the integration formula directly with $n=1/2$
+\begin{equation}
+\int \sqrt{x}dx=\int x^{1/2}dx=\frac{2x^{3/2}}{3}
+\end{equation}
+and the last one is the same thing but with $s=7x+1$ so $ds=7dx$.
+
+\item Integrating the square pulse. Say $f$ is square pulse
+\begin{equation}
+f(t)=\left\{\begin{array}{ll}1&-\pi/2<t<\pi/2\\0&\mbox{otherwise}\end{array}\right.
+\end{equation}
+Thus $f(t)$ is one between $-\pi/2$ and $\pi/2$ but zero everywhere else. What is
+\begin{equation}
+I=\int_{-\pi}^\pi f(t)\cos{t}dt
+\end{equation}
+what about
+\begin{equation}
+I=\int_{-\pi}^\pi f(t)\cos{nt}dt
+\end{equation}
+for $n$ an integer.
+\end{enumerate}
+
+\textbf{Solution: } So the thing to realize is that $f(t)$ is zero for $t>\pi/2$ and $t<-\pi/2$, so those parts of the interval don't contribute
+\begin{equation}
+I=\int_{-\pi}^\pi f(t)\cos{t}dt=\int_{-\pi/2}^{\pi/2} f(t)\cos{t}dt
+\end{equation}
+but now $t$ is inside the $(-\pi/2,\pi/2)$ interval where $f(t)=1$ so
+\begin{equation}
+I=\int_{-\pi/2}^{\pi/2} \cos{t}dt=\sin{\pi/2}-\sin{(-\pi/2)}=2
+\end{equation}
+For the version with $n$ dealing with the $f(t)$ gets us to
+\begin{equation}
+I=\int_{-\pi/2}^{\pi/2} \cos{nt}dt
+\end{equation}
+then let $s=nt$ so $dt=ds/n$ and $t=\pi/2$ means $s=n\pi/2$ and so on, giving us
+\begin{equation}
+I=\frac{1}{n}\int_{-n\pi/2}^{n\pi/2} \cos{s}ds=\frac{2}{n}\sin{n\pi/2}
+\end{equation}
+and this is equal to $2/n$ is $n$ is odd, but zero is $n$ is even, since $\sin{n\pi}=0$ for integer $n$.
+\end{document}

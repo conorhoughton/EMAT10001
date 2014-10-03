@@ -1,0 +1,256 @@
+\documentclass[12pt]{article}
+\usepackage{a4wide, amsfonts, epsfig,bbding}
+
+\begin{document}
+\begin{center}
+{\bf EMAT10001 Lecture 4.}\\[1cm]{} Conor Houghton 2013-10-16
+\end{center}
+\subsection*{Preface} 
+These are outline notes for lecture 4; they are based on \emph{Number
+  Theory with Computer Applications} by Ramanujachary Kumanduri and
+Cristina Romero. This is an excellent book, but the material can be
+found in many number theory and discrete mathematics books. As usual
+there is a bounty of between 20p and \pounds 2 for errors, you can
+tell me at the end of a lecture or email me at
+\texttt{conor.houghton{@}bristol.ac.uk}. A manicule (\HandLeft{} or \HandRight) is used to
+indicate that a proof, derivation or piece of material has been
+omitted from the lecture but will be covered in the workshop.
+
+\subsection*{Introduction}
+There are two types of mathematicians, those who think of themselves
+as discovering mathematics and those who think of themselves as
+creating it. It is the sort of mathematics done by the second type of
+mathematicians that we will look at over the next few lectures, in
+particular, we will look at number theory and group theory. Our aim is
+three fold:
+\begin{itemize}
+\item The mathematics we will look at is the basis of cryptography and is useful in a number of areas in computer science.
+\item The concepts we will see occur, often in a more complicated way, across all sorts of mathematical constructions.
+\item This area has some nice proofs, which will let us practise proving things before learning about it more precisely from Kerstin.
+\end{itemize}
+
+In the case of Boolean algebra we saw the \emph{and} table:\\
+\begin{center}
+\begin{tabular}{l|ll}
+$\land$&0&1\\
+\hline
+0   &0&0\\
+1   &0&1\\
+\end{tabular}
+\end{center}
+which a lot like a multiplication table and the \emph{xor} table:\\
+\begin{center}
+\begin{tabular}{l|ll}
+$\oplus$&0&1\\
+\hline
+0   &0&1\\
+1   &1&0\\
+\end{tabular}
+\end{center}
+which looks a bit like an addition table, except $1+1=2$ whereas
+$1\oplus 1=0$. In fact, this could also be thought of as modular
+addition. Here we are going to look at modular arithmetic and then at
+group theory, which answers the question of when something \lq{}looks
+a bit like an addition table\rq{}. Modular arithmetic is the basis of
+the RSA encryption algorithm, it gives examples that are useful for
+studying group theory, it is a good example for looking at equivalence
+relations and it's a fun piece of mathematics.
+
+\subsection*{Remainders}
+
+We write
+\begin{equation}
+r=a \bmod b
+\end{equation}
+to mean that $r$ is the remainder when $a$ is divided by $b$. This is
+ambiguous, a non-zero $r$ could be positive or negative; it is normal
+to take $r$ non-negative. This is the same as saying
+\begin{equation}
+a=mb+r
+\end{equation}
+for some $m$ an integer, with $0\le r<b$. Hence
+\begin{equation}
+4=104 \bmod 50
+\end{equation}
+because $104=2\cdot 50+4$.\footnote{There are two simple Python programs
+  on the website for you to practise modular arithmetic.} \HandRight{} It is easy
+to check that 
+\begin{equation}
+[a+b\bmod{c}]=[[a \bmod{c}]+[b \bmod{c}] \bmod{c}]
+\end{equation}
+and
+\begin{equation}
+[ab\bmod{c}]=[[a \bmod{c}][b \bmod{c}] \bmod{c}]
+\end{equation}
+which helps when calculating remainders for large numbers, for
+example, for numbers whose product might exceed the capacity of an
+\texttt{int}.
+
+We should also note that there is a theorem called The Division
+Theorem that shows that this is all well defined, that is, given
+integers $a$ and $b$ with $b\not=0$ there are unique integers $m$ and
+$r$ such that $a=bm+r$ and $0\le r<|b|$. This isn't a hard theorem but
+we are leaving it out for brevity.
+
+If $0=a\bmod b$ then we say $b$ \emph{divides} $a$ and write
+$b|a$. Obviously, this means $a=mb$ for some $m$. Hence $8|24$ and
+$3|27$ but $8\not|27$. Notice also that $a|0$ since $0=0a$. \HandRight It is useful to list some basic properties as a lemma.\\
+\\
+\noindent \textbf{Lemma}. If $a$, $b$, $c$, $x$ and $y$ are positive integers
+\begin{enumerate}
+\item If $a|b$ and $x|y$ then $ax|by$.
+\item If $a|b$ and $b|c$ then $a|c$.
+\item If $a|b$ and $b\not=0$ then $a\le b$.
+\item If $a|b$ and $a|c$ then $a|(bx+cy)$.
+\end{enumerate}
+
+As you probably know if $p>1$ has only one and itself as divisors then
+$p$ is a \emph{prime} number. Thus, seven is a prime, eight is not. Perhaps
+the most important thing about primes is that the set of integers is a \emph{unique factorization domain}, which means that every number can be written as
+\begin{equation}
+n=p_1p_2\ldots p_r
+\end{equation}
+where $p_1$, $p_2$ and so on up to $p_r$ are primes and up to the
+order you write the primes in, there is only one way to do this. In this way
+\begin{equation}
+18=2\cdot 3 \cdot 3 =2 \cdot 3^2.
+\end{equation}
+
+\subsection*{Greatest Common Divisor}
+
+Another important concept is the greatest common divisor of two
+numbers $a$ and $b$, written gcd$(a,b)$ or just
+$(a,b)$.\footnote{Because it is such a straight-forward notation,
+  $(a,b)$ is used to mean very different things in different areas of
+  mathematics, so be careful with it.} A \emph{common divisor} of $a$
+and $b$ is a number $d$ which divides both, that is $d|a$ and $d|b$;
+the \emph{greatest common divisor} is the largest such number. Hence
+two is a common divisor of six and 24 but
+\begin{equation}
+(6,24)=6
+\end{equation}
+If $(a,b)=1$ we say $a$ and $b$ are \emph{co-prime}. 
+
+There is an obvious, but slow way to find the greatest common divisor,
+take for example 18 and 24. We know
+\begin{eqnarray}
+18&=&2\cdot 3\cdot 3\cr
+24&=&2\cdot 2\cdot 2\cdot 3
+\end{eqnarray}
+so we look at the prime factors in common, one two and one three, so
+$(18,24)=6$. There is a much quicker way, the Euclid algorithm, which
+we will return to shortly, first though we want to prove a slightly
+surprising property of the greatest common divisor; for any $a$ and
+$b$ there are integers $m$ and $n$ such that
+\begin{equation}
+(a,b)=ma+nb
+\end{equation}
+This works for all integers $a$ and $b$ but for simplicity we assume $a$ and $b$ are non-negative. \HandRight We first need a simple lemma.\\
+\\
+\noindent \textbf{Lemma}. $(a,b)=(a-b,b)$.\\
+
+Now the theorem itself.\\
+\\
+\noindent \textbf{Theorem}. For any non-negative integers $a$ and $b$ there are integers $m$ and $n$ such that $(a,b)=ma+nb$.\\
+\noindent \textbf{Proof}: Write $d=(a,b)$. It is clear that $d|(ma+nb)$ for any
+$m$ and $n$, the problem is showing that there is an $m$ and $n$ such
+that $d=ma+nb$. Consider the set of all linear combinations
+\begin{equation}
+S=\{ma+nb|m,n\in\mathbf{Z}\}
+\end{equation}
+Let $c$ be the smallest positive integer in $S$, so $c>0$ and, if
+$e\in S$ and $e>0$ then $e\ge c$. Since $c\in S$ there are $m_1$ and $n_1$ such that
+\begin{equation}
+c=m_1a+n_1b
+\end{equation}
+Now by choosing $m=1$ and $n=0$ or the other way around we can see
+$c\le a$ and $c\le b$. Now from the division theorem we know
+\begin{equation}
+a=qc+r
+\end{equation}
+with $0\le r<c$ for some $q$. Turning this around
+\begin{equation}
+r=a-qc=a-q(m_1a+n_1b)=(1-qm_1)a-qn_1b
+\end{equation}
+so since this in the form $ma+nb$, with $m=1-qm_1$ and $n=-qn_1$,
+$r\in S$. If $r\not=0$ then this $r$ is smaller than $S$,
+contradicting the choice of $c$ as the smallest non-negative element
+in $S$. Thus $r$ must be zero, and hence $a=qc$ so $c|a$. The same
+method can be used to show $c|b$ and hence $c$ is a divisor of $a$ and
+$b$. Since $c\in S$ we know $d|c$ and since $d$ is the greatest
+divisor, this means $d=c$. $\square$
+
+Related to the greatest common divisor is the \emph{Euler Totient function}:
+\begin{equation}
+\phi(a)=|\{b<a|(a,b)=1\}|
+\end{equation}
+so $\phi(a)$ is the number of numbers less than $a$ and co-prime with it.\HandLeft
+
+\subsection*{Euclid algorithm}
+
+The Euclid algorithm is an efficient algorithm for finding the
+greatest common divisor of two numbers, it also allows us to find the $m$ and $n$ in the equation
+\begin{equation}
+(a,b)=ma+nb
+\end{equation}
+for some $m$ and $n$. It is perhaps surprising that it is far easier
+to find the greatest common divisor than to factorize the numbers
+involved. This is part of what makes public key cryptography work. The
+algorithm is\\
+\\
+\noindent \textbf{Algorithm}. For positive integers $a$ and $b\not=0$ 
+\begin{enumerate}
+\item Set $x=a$ and $y=b$.
+\item If $y=0$ then $x$ is the answer.
+\item Set $r=x\bmod y$ and then let $x=y$ and $y=r$ and return to 2.
+\end{enumerate}
+
+The algorithm works because $(a,b)=(a-b,b)$, the step $r=x\mbox y$ is
+replacing $x$ with $x-my$ for some $y$. It also swaps using
+$(a,b)=(b,a)$ so that the numbers keep getting lower.
+
+As an example consider finding (56,106). 
+\begin{eqnarray}
+50&=&106\bmod 56\cr
+6 &=&56 \bmod 50\cr
+2 &=&50 \bmod 6\cr
+ 0 &=&6 \bmod 2
+\end{eqnarray}
+so $(56,106)=2$. Further, working backwards through the modular divisions, from the first non-zero modular equation
+\begin{equation}
+2 =50-8*6
+\end{equation}
+Now the next one tells us that $6=56-50$, so substituting that back in gives
+\begin{equation}
+2 =50-8(56-50)=9\cdot 50 -8\cdot 56
+\end{equation}
+and $50=106-56$ gives
+\begin{equation}
+2 = 9\cdot (106-56) - 8\cdot 56 = 9\cdot 106 -17 \cdot 56
+\end{equation}
+
+\subsection*{Modular arithmetic}
+
+The idea behind modular arithmetic is to use the idea of remainders
+and so on and to turn it into an actual arithmetic system. It relies
+on \emph{congruence}. If $a$, $b$ and $c$ are integers, we say that
+$a$ \emph{is congruent to } $b$ \emph{modulo} $m$ if $m|(a-b)$. This
+is written $a\equiv b\pmod m$. There are different ways of thinking
+about this, we could say $a$ is the same as $b$ up to a multiple of
+$m$, or we could use the language of remainders we developed above and
+say $a\equiv b \pmod m$ is $(a \bmod m)=(b \bmod m)$. Note the way the
+use of mod differs, if $r=a\bmod m$ then $r$ is the remainder and
+$0\le r<b$ whereas if $a\equiv b\pmod m$ then $a$ and $b$ are
+conjugate, neither has to be less than $m$.
+
+Congruence is an example of an \emph{equivalence relation}, an equivalence relation is any relationship between pairs of elements in a set that satisfies reflexivity, symmetry and transitivity. So, for a set $X$ the relationship $\sim$ is an equivalence relationship if 
+\begin{enumerate}
+\item Reflexivity: if $x\in X$ then $x\sim x$.
+\item Symmetry: if $x$ and $y$ are in $X$ and $x\sim y$ then $y\sim x$.
+\item Transitivity: if $x$, $y$ and $z$ are in X and $x\sim y$ and
+  $y\sim z$ then $x\sim z$.
+\end{enumerate}
+Verifying that congruence is an equivalence relation is just a matter of checking each of those three properties.\HandLeft
+\end{document}
+
+

@@ -1,0 +1,58 @@
+\documentclass[12pt]{article}
+
+\usepackage{a4wide, amsfonts, epsfig}
+
+\begin{document}
+\begin{center}
+{\bf EMAT10001 Exercise Sheet 13.}\\[1cm]{} Conor Houghton 2014-01-26
+\end{center}
+
+\subsubsection*{Exercise sheet}
+
+The difference between the work sheet and the exercise sheet is that
+the solutions to the exercise sheet won't be given and the problems
+are designed to be more suited to working on on your own, though you
+are free to discuss them in the work shop if you finish the work sheet
+problems. Selected problems from the exercise sheet will be requested
+as part of the continual assessment portfolio.
+
+\begin{enumerate}
+
+\item Solve 
+\begin{equation}
+\frac{df}{dt}=5f
+\end{equation}
+with $f(0)=12$.
+
+\item Differentiate 
+\begin{equation}
+f(x)=x^3e^{x^3}
+\end{equation}
+
+\item Solve
+\begin{equation}
+\frac{df}{dt}=5(1-f)
+\end{equation}
+with $f(0)=0$.
+
+\item The growth equation is not a realistic model of growth if there
+  is a finite resource the population requires, this might be food, or
+  space, or available uninfected individuals. The Verhulst-Pearl
+  equation is an alternative that includes a \textsl{carrying
+    capacity} for the environment, growth depends not only on the
+  population but the residual carrying capacity. A simple
+  Velhulst-Pearl equation is
+\begin{equation}
+\frac{dP}{dt}=P(1-P)
+\end{equation}
+More complicated versions include constants which have been set to one here. Solving this equation is tricky, it involves direct integration and a partial fractions expansion. However, it is easier to check the solution is indeed a solution, the solution with $P(0)=1/2$ is
+\begin{equation}
+P=\frac{1}{1+\exp(-t)}
+\end{equation}
+Check this.
+\end{enumerate}
+
+\subsubsection*{Challenge}
+First three to get onto level five, that is complete four levels, of \texttt{http://www.pythonchallenge.com/} gets chocolate. Send a screenshot.
+
+\end{document}

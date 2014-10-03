@@ -1,0 +1,72 @@
+\documentclass[12pt]{article}
+
+\usepackage{a4wide, amsfonts, epsfig,bbold}
+
+\begin{document}
+
+\begin{center}
+\textbf{EMAT10001 Workshop Sheet 7 outline solutions.}\\[1cm]{} Conor Houghton 2013-11-10
+\end{center}
+
+
+\subsubsection*{Work sheet}
+
+\begin{enumerate}
+\item Work out a multiplication table for $\{[1],[3],[5],[7]\}$ modulo eight. Show it is a group - don't worry about associativity, that follows from the associativity of modular multiplication. In fact, this is the other group with four elements; it is called the Klein four-group.\\
+  \textbf{Solution: }
+\begin{center}
+\begin{tabular}{l|llll}
+$\cdot $&$[1]$&$[3]$&$[5]$&$[7]$\cr
+\hline
+$[1]$&$[1]$&$[3]$&$[5]$&$[7]$\cr
+$[3]$&$[3]$&$[1]$&$[7]$&$[5]$\cr
+$[5]$&$[5]$&$[7]$&$[1]$&$[3]$\cr
+$[7]$&$[7]$&$[5]$&$[3]$&$[1]$
+\end{tabular}
+\end{center}
+and the key thing is that only $[1]$, $[3]$, $[5]$ and $[7]$ appear,
+so it is closed, $[1]$ is an identity and the identity appears in
+every row and column so this is a group.
+\item Consider the digit 0, this has flipping over symmetries,
+  flipping it horizonally $h$, flipping it vertically $v$ and doing
+  both, one after the other, which we will write as $hv$. Write out a
+  composition \lq{}after\rq{} table for this set of symmetries,
+  including $e$, doing nothing. Is this group the Klein four-group
+  $V_4$ or the four element group $\mathbf{Z}_4$ we saw in lectures.
+  \textbf{Solution: } Checking $R_{180}=h\circ v$ well it gets flipped
+  twice so it must be a rotation and it is easy to look at where
+  specific points go. Now
+\begin{center}
+\begin{tabular}{l|llll}
+$\circ $&$e$&$h$&$v$&$hv$\cr
+\hline
+$e$&$e$&$h$&$v$&$hv$\cr
+$h$&$h$&$e$&$hv$&$v$\cr
+$v$&$v$&$hv$&$e$&$h$\cr
+$hv$&$hv$&$v$&$h$&$e$
+\end{tabular}
+\end{center}
+To work this out just note that $h^2=v^2=(hv)^2=e$, everything is
+Abelian so $vhv=hvv=hv^2=he=h$ and so on. Clearly closed and clearly
+has an identity and, finally, each row and column has an identity in
+it so there must be an inverse for every element. The big difference
+between $V_4$ and $\textbf{Z}_4$ is that in the former all the
+elements square to one, and that's true here, so this is $V_4$,
+$[1]=[e]$, $[3]=h$, $[5]=v$ and $[7]=hv=[3][5]=[15]=[7]$ works.
+
+\item Consider the addition table for $\{[0],[1],[2],[3]\}$ modulo four. Show this is a group -   don't worry about associativity, that follows from the associativity of modular addition. What is the identity? Is this group the Klein four-group $V_4$ or the four element group $\mathbf{Z}_4$ we saw in lectures.\\
+  \textbf{Solution: } Now
+\begin{center}
+\begin{tabular}{l|llll}
+$+ $&$[0]$&$[1]$&$[2]$&$[3]$\cr
+\hline
+$[0]$&$[0]$&$[1]$&$[2]$&$[3]$\cr
+$[1]$&$[1]$&$[2]$&$[3]$&$[0]$\cr
+$[2]$&$[2]$&$[3]$&$[0]$&$[1]$\cr
+$[3]$&$[3]$&$[0]$&$[1]$&$[2]$
+\end{tabular}
+\end{center}
+and this is a group with $[0]$ the identity. It is obviously $\textbf{Z}_4$ since $[1]+[1]=[2]$ so not all the elements are there own inverse as they are for the $V_4$ group. To find the isomorphism just make that up so in the lecture note the one that is its own inverse is $c$ and here it is $[2]$ so $[0]=e$ and $[2]=c$, the other two work either way.
+\end{enumerate}
+
+\end{document}

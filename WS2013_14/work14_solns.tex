@@ -1,0 +1,222 @@
+\documentclass[12pt]{article}
+
+\usepackage{a4wide, amsfonts, epsfig}
+
+\begin{document}
+\begin{center}
+{\bf EMAT10001 Workshop Sheet 14 outline solutions.}\\[1cm]{} Conor Houghton 2014-02-02
+\end{center}
+
+\subsubsection*{Work sheet}
+
+\begin{enumerate}
+
+
+\item Revise differentiating  again!
+\begin{enumerate}
+\item Find $df/dx$ of $f(x)=\tan{x}$ using $\tan{x}=\sin{x}/\cos{x}$.
+\item We know $\sin^2{x}+\cos^2{x}=1$, differentiate both sides of this equation.
+\end{enumerate}
+
+\textbf{Solutions: } I guess you could use the quotient rule for the
+first one, but I can never remember it so I'll use the product
+rule. First let $y=1/\cos{x}$ so, using the chain rule
+\begin{equation}
+\frac{dy}{dx}=\sin{x}/\cos^2{x}
+\end{equation}
+Thus
+\begin{equation}
+\frac{d}{dx}\tan{x}=\frac{\sin^2{x}}{\cos^2{x}}+1=\frac{\sin^2{x}+\cos^2{x}}{\cos^2x}=\frac{1}{\cos^2x}
+\end{equation}
+As for the second, 
+\begin{equation}
+\frac{d}{dx}\sin^2{x}=2\sin{x}\cos{x}
+\end{equation}
+whereas 
+\begin{equation}
+\frac{d}{dx}\cos^2{x}=-2\sin{x}\cos{x}
+\end{equation}
+which add to zero, which is good since $d/dx 1$ is obviously zero.
+
+\item What is the Taylor expansion of $\tan{t}$ up to and include the $t^3$ term?
+
+\textbf{Solutions: } Well we already saw that 
+\begin{equation}
+\frac{d}{dt}\tan{t}=\cos^{-2}t
+\end{equation}
+Differentiating that gives
+\begin{equation}
+\frac{d^2}{dt^2}\tan{t}=2\sin{t}\cos^{-3}t=2\tan{t}\sec^2{t}
+\end{equation}
+where I've used the notation $\sec{t}=\tan{t}$. Next
+\begin{equation}
+\frac{d^3}{dt^3}\tan{t}=2\sec^2{t}\sec^2{t}+4\tan^2{t}\sec^4{t}
+\end{equation}
+Hence, using $\sec{0}=1$ and $\tan{0}=1$
+\begin{equation}
+\tan{t}=t+\frac{1}{3}t^3+O(t^4)
+\end{equation}
+
+
+\item If $f(t)=\arctan{t}$ then 
+\begin{equation}
+\frac{df}{dt}=\frac{1}{1+t^2}
+\end{equation}
+This is derived using the chain rule and a trick called implicit differentiation. Basically let $y=\arctan{x}$ so $x=\tan{y}$, differentiate both sides with respect to $x$
+\begin{equation}
+1=\frac{dx}{dx}=\frac{d}{dx}\tan{y}=\frac{dy}{dx}\frac{d}{dy}\tan{y}
+\end{equation}
+and then do some messing to get $dy/dx$ in terms of $x$. Do that!
+
+\textbf{Solutions: } Well it's mostly done
+\begin{equation}
+1=\frac{dy}{dx}\sec^2{y}
+\end{equation}
+and we just need to get back to something involving $\tan{y}$, in fact
+\begin{equation}
+\sin^2{y}+\cos^2{y}=1
+\end{equation}
+when you divide by $\cos^2{y}$ gives
+\begin{equation}
+\tan^2{y}+1=\sec^2{y}
+\end{equation}
+so our equation is
+\begin{equation}
+1=\frac{dy}{dx}(1+\tan^2{y})
+\end{equation}
+which gives the answer since $\tan{y}=x$.
+
+\item The Taylor expansion of $\arctan{x}$ is 
+\begin{equation}
+\arctan{x}=\sum_{n\,\mbox{odd}} (-1)^{(n-1)/2}\frac{x^n}{n}
+\end{equation}
+Check this as far as the $x^3$ term. [There is a very elegant derivation of this Taylor series, basically $1/(1+x)$ has a known Taylor expansion, up to a sign this is asked in the exercise sheet; this allows you to calculate the expansion of $1/(1+x^2)$ and from this you can read off all the derivative you need for the expansion of $\arctan{x}$, if you are feeling ambitious you can try to do this.]
+
+\textbf{Solutions: } So 
+\begin{equation}
+\frac{d}{dx}\arctan{x}=\frac{1}{1+x^2}
+\end{equation}
+and using the chain rule
+\begin{equation}
+\frac{d^2}{dx^2}\arctan{x}=-\frac{2x}{(1+x^2)^2}
+\end{equation}
+and
+\begin{equation}
+\frac{d^3}{dx^3}\arctan{x}=-\frac{2(1+x^2)^2-8x^2(1+x^2)}{(1+x^2)^4}
+\end{equation}
+and substituting in $x=0$ gives one, zero and -2, as required.
+
+\item What is $\arctan{1}$?
+
+\textbf{Solutions: } 
+\begin{equation}
+\arctan{1}=\pi/4
+\end{equation}
+
+
+\item Use the Taylor expansion of $\arctan{1}$ to write down a formula
+  for calculating $\pi$ and do the first six terms. 
+
+\textbf{Solutions: } Well we have
+\begin{equation}
+\pi=4\sum_{n\,\mbox{odd}} (-1)^{(n-1)/2}\frac{1}{n}=1-\frac{1}{3}+\frac{1}{5}-\frac{1}{7}+\frac{1}{9}+\ldots
+\end{equation}
+and so this give $3.3396$ whici isn't very close, in fact, this series
+approximation of $\pi$ is very slow to converge, there are other,
+similar, series that converge much faster.
+
+\item The series for $\arctan{1}$ is disasterously slow if you want to
+  use it to calculate $\pi$; in fact getting ten decimal places
+  correct requires 5,000,000,000 terms. However, there are other
+  approaches to using the $\arctan{x}$ series. According to Wikipedia,
+  in 1699, English mathematician Abraham Sharp used this series with
+  $x=\sqrt{1/3} $ to compute $\pi$ to 71 digits, breaking the previous
+  record of 39 digits, his record only stood for seven years when a
+  new and faster converging series for $\pi$ was found; this was
+\begin{equation}
+\frac{\pi}{4}=4\arctan{\frac{1}{5}}-\arctan{\frac{1}{239}}
+\end{equation}
+You can prove this with clever use of trignometric identities, you
+shouldn't do that here, but you should use the formula to find an
+approximation of $\pi$, take three terms for example. By the way,
+there is a graph
+at\\ \texttt{http://en.wikipedia.org/wiki/File:Record\_pi\_approximations.svg}\\ showing
+how the number of known digits of $\pi$ has changed over history.
+
+\textbf{Solutions: } Well
+\begin{equation}
+4\arctan{\frac{1}{5}}=\frac{4}{5}-\frac{4}{3}\frac{1}{125}+\frac{4}{5}\frac{1}{3125}+\ldots\approx 0.789589333
+\end{equation}
+and
+\begin{equation}
+\arctan{\frac{1}{239}}=\frac{1}{239}-\frac{1}{3}\frac{1}{57121}+\ldots\approx 0.00417826
+\end{equation}
+
+\item The binomial theorem tells us that
+\begin{equation}
+(1+x)^n=\sum_{r=0}^n \left(\begin{array}{c}n\\r\end{array}\right)x^r
+\end{equation}
+Prove this using the Taylor expansion.
+
+\textbf{Solutions: } Just a matter of differentiating:
+\begin{equation}
+f(x)=(1+x)^n
+\end{equation}
+so 
+\begin{equation}
+\frac{df}{dx}=n(1+x)^{n-1}
+\end{equation}
+and so on, so
+\begin{equation}
+\frac{d^rf}{dx^r}=n(n-1)(n-2)\ldots(n-r+1)(1+x)^{n-r}
+\end{equation}
+and so on until $n=r$, in which case this is a constant and the next
+term is zero, hence the Taylor expansion is
+\begin{equation}
+(1+x)^n=\sum_{r=0}^n\frac{n(n-1)\ldots(n-r+1)}{r!}x^r
+\end{equation}
+and this is the binomial expansion since
+\begin{equation}
+\frac{n(n-1)\ldots(n-r+1)}{r!}=\frac{n!}{(n-r)!r!}
+\end{equation}
+
+\item Find the first three terms of the Taylor expansion of $\sqrt{1+x}$. Don't bother with this one if time is short since we've already done lots.
+
+\textbf{Solutions: } Ok, so
+\begin{equation}
+\sqrt{1+x}=1+\frac{1}{2}x-\frac{1}{8}x^2+\ldots
+\end{equation}
+
+\item The general second order Runge Kutta method for $\dot{y}=f(y)$ is
+\begin{eqnarray}
+k_1&=&f(y_n)\cr
+k_2&=&f(y_n+\alpha \delta t k_1)
+\end{eqnarray}
+and
+\begin{equation}
+y_{n+1}=y_n+\left[\left(1-\frac{1}{2\alpha}\right)k_1+\frac{1}{2\alpha}k_2\right]\delta t
+\end{equation}
+Show that this gives the Taylor series up to second order. Note that
+$\alpha=1/2$ gives the midpoint method.
+
+\textbf{Solutions: } Same craic as in the lectures, expand out $k_2$ using the Taylor series
+\begin{equation}
+k_2=f(y_n+\alpha \delta t k_1)=f(y_n)+\left.\frac{df}{dy}\right|_{y=y_n}\alpha \delta t k_1+\ldots
+\end{equation}
+then use the chain rule 
+\begin{equation}
+\frac{df}{dy}k_1=\frac{df}{dy}\frac{dy}{dt}=\frac{df}{dt}=\frac{d^2f}{dt^2}
+\end{equation}
+so
+\begin{equation}
+k_2=\dot{y}(t_n)+\alpha \delta t \ddot{y}(t_n)+\ldots
+\end{equation}
+so
+\begin{equation}
+y_{n+1}=y_n\left[\left(1-\frac{1}{2\alpha}\right)k_1+\frac{1}{2\alpha}k_2\right]\delta t=y(t_n)+\dot{y}(t_n)+\delta t \ddot{y}(t_n)+\ldots
+\end{equation}
+which is the first three terms of the Taylor expansion, as required.
+
+\end{enumerate}
+
+\end{document}

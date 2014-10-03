@@ -1,0 +1,23 @@
+\setlength{\unitlength}{4144sp}%
+%
+\begingroup\makeatletter\ifx\SetFigFont\undefined%
+\gdef\SetFigFont#1#2#3#4#5{%
+  \reset@font\fontsize{#1}{#2pt}%
+  \fontfamily{#3}\fontseries{#4}\fontshape{#5}%
+  \selectfont}%
+\fi\endgroup%
+\begin{picture}(1512,972)(2236,-3901)
+\thinlines
+{\color[rgb]{0,0,0}\put(2521,-3886){\vector( 3, 1){1215}}
+}%
+{\color[rgb]{0,0,0}\put(3691,-3481){\vector(-4, 3){720}}
+}%
+{\color[rgb]{0,0,0}\put(2521,-3841){\vector( 1, 2){450}}
+}%
+\put(3286,-3886){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}{\rmdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}u}%
+}}}}
+\put(3421,-3076){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}{\rmdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}v}%
+}}}}
+\put(2251,-3301){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}{\rmdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}u+v}%
+}}}}
+\end{picture}%
