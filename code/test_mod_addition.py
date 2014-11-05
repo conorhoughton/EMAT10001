@@ -11,10 +11,6 @@ score=0
 i=0
 
 
-seed=input("\nInput an integer to seed the random number generator: ");
-random.seed(seed);
-
-print "\n"
 
 while i<trials:
     a=random.randrange(limit_a_b)
